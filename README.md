@@ -1,5 +1,5 @@
 # Kronaplot Examples
-This repository includes a high level order of operations for running fastq files through Kraken2 and KronaTools to create a krona plot. This document also includes resources and references for the tools used. Included in this repository are the kraken2 reports and krona plots for publically availables SRA files (SRR32381984, SRR32381983, SRR32924575). If you have any questions please reach out to christopher.jossart@slh.wisc.edu.
+This repository includes a high level overview of order of operations for running fastq files through Kraken2 and KronaTools to create a krona plot. This document also includes resources and references for the tools used. Included in this repository are the kraken2 reports and krona plots for publically availables SRA files (SRR32381984, SRR32381983, SRR32924575).
 
 ## Overview of order of operations
 1. Gather Input Data for Kraken2 Analysis
@@ -29,11 +29,15 @@ This line of code can be used to run Kraken2 in the command line. You will need 
 kraken2 --db k2_pluspf_16gb_20240605 --report sample_1_report.txt --output sample_1_output.txt --gzip-compressed --paired reads/sample_1_R1.fastq.gz reads/sample_1_R2.fastq.gz
 
 ```
-> kraken2 is the kraken2 command to create the kraken2 report​
-> --db is the kraken2 database parameter ​
-> --report is the parameter to define the report name and location​
-> --output is the parameter to define the standard output file name and location​
-> --gzip-compressed and –paired refer to the format of the input fastq files​
+kraken2 is the kraken2 command to create the kraken2 report​
+
+--db is the kraken2 database parameter
+
+--report is the parameter to define the report name and location​
+
+--output is the parameter to define the standard output file name and location​
+
+--gzip-compressed and –paired refer to the format of the input fastq files​
 
 
 ## 3. Update NCBI Taxonomic IDs for KronaTools
@@ -51,11 +55,16 @@ You can now run KronaTools to create Krona Plots from the Kraken2 reports. This 
 ```
 ktImportTaxonomy -t 5 -m 3 -o combined_krona.html *.report 
 ```
-> KtImportTaxonomy is the KronaTools command to create a krona plot from kraken2 reports​
-> -t is the parameter for the NCBI taxonomic ID column in the kraken2 report​
-> -m is the parameter for the magnitude (i.e. fragments, reads) column in the kraken2 report​
-> -o is the parameter to define the output file name and location​
-> Input of the kraken2 report(s) follows the previous parameters​
+
+KtImportTaxonomy is the KronaTools command to create a krona plot from kraken2 reports​
+
+-t is the parameter for the NCBI taxonomic ID column in the kraken2 report​
+
+-m is the parameter for the magnitude (i.e. fragments, reads) column in the kraken2 report​
+
+-o is the parameter to define the output file name and location​
+
+Input of the kraken2 report(s) follows the previous parameters​
 
 
 ## 5. Interact and Interpret Krona Plots
@@ -64,11 +73,11 @@ You can now play around with the krona plots and explore the reads and taxonomic
 
 ## Resources
 Kraken2​:
-> Kraken2 Manual: https://github.com/DerrickWood/kraken2/blob/master/docs/MANUAL.markdown​
-> Kraken2 pre-built databases: https://benlangmead.github.io/aws-indexes/k2​
+Kraken2 Manual: https://github.com/DerrickWood/kraken2/blob/master/docs/MANUAL.markdown​
+Kraken2 pre-built databases: https://benlangmead.github.io/aws-indexes/k2​
 Krona Plots​:
-> Krona Manual: https://github.com/marbl/Krona/wiki​
-> KronaTools Manual: https://github.com/marbl/Krona/wiki/KronaTools
+Krona Manual: https://github.com/marbl/Krona/wiki​
+KronaTools Manual: https://github.com/marbl/Krona/wiki/KronaTools
 
 ## References
 1. Wood, D.E., Salzberg, S.L. Kraken: ultrafast metagenomic sequence classification using exact alignments. Genome Biol 15, R46 (2014). https://doi.org/10.1186/gb-2014-15-3-r46​
